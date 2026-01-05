@@ -61,7 +61,7 @@ const updateTask = () => {
 
 const deleteTask = () => {
     const taskIndex = findTaskIndex(userInput[1])
-    
+
     if (taskIndex < 0) {
         console.log("Hmm, diese Task existiert nicht :/")
         return;
@@ -73,4 +73,79 @@ const deleteTask = () => {
     numerateFiles(allTasks);
 }
 
-deleteTask();
+const markInProgress = () => {
+    const taskIndex = findTaskIndex(userInput[1])
+
+    if (taskIndex < 0) {
+        console.log("Hmm, diese Task existiert nicht :/")
+        return;
+    }
+    allTasks[taskIndex].status = "in-progress";
+
+    updateFile(allTasks);
+}
+
+const markDone = () => {
+    const taskIndex = findTaskIndex(userInput[1])
+    if (taskIndex < 0) {
+        console.log("Hmm, diese Task existiert nicht :/")
+        return;
+    }
+    allTasks[taskIndex].status = "done";
+
+    updateFile(allTasks);
+}
+
+const list = () => {
+    let filteredTasks;
+    
+    if (userInput[1]) {
+        filteredTasks = allTasks.filter(task => task.status === userInput[1]);
+    } else {
+        filteredTasks = allTasks;
+    }
+    filteredTasks.forEach(task => {
+        let color;
+        switch (task.status) {
+            case "in-progress":
+                color = 33
+                break;
+            case "done":
+                color = 32
+                break;
+            default:
+                color = 31
+                break;
+        }
+        console.log(`\x1b[${color}m${task.id} ${task.description}\x1b[0m`);
+    })
+}
+
+switch (userInput[0]) {
+    case "add":
+        addTask();
+        break;
+
+    case "update":
+        updateTask();
+        break;
+
+    case "delete":
+        deleteTask();
+        break;
+
+    case "mark-in-progress":
+        markInProgress();
+        break;
+
+    case "mark-done":
+        markDone();
+        break;
+
+    case "list":
+        list();
+        break;
+    default:
+        console.log('Diese Funktion existiert nicht')
+        break;
+}
