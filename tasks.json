@@ -1,0 +1,16 @@
+[
+	{
+		"id": 0,
+		"description": "Neu",
+		"status": "todo",
+		"createdAt": 1767629989111,
+		"updatedAt": 1767630973696
+	},
+	{
+		"id": 1,
+		"description": "Bearbeitet",
+		"status": "todo",
+		"createdAt": 1767629989111,
+		"updatedAt": 1767631705680
+	}
+]
