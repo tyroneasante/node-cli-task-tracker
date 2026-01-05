@@ -18,6 +18,13 @@ const findTaskIndex = (id) => {
     return allTasks.findIndex(task => task.id == id);
 } 
 
+const numerateFiles = () => {
+    allTasks.forEach((task, index) => {
+        task.id = index;
+    });
+    updateFile(allTasks)
+}
+
 const addTask = () => {
     const newTask = {
         "id": 0,
@@ -51,3 +58,19 @@ const updateTask = () => {
 
     updateFile(allTasks)
 }
+
+const deleteTask = () => {
+    const taskIndex = findTaskIndex(userInput[1])
+    
+    if (taskIndex < 0) {
+        console.log("Hmm, diese Task existiert nicht :/")
+        return;
+    }
+
+    allTasks.splice(taskIndex, 1)
+    
+    updateFile(allTasks);
+    numerateFiles(allTasks);
+}
+
+deleteTask();
