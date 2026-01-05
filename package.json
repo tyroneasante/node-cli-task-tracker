@@ -1,0 +1,12 @@
+{
+  "name": "cli-task-tracker-01-26",
+  "version": "1.0.0",
+  "description": "nodejs cli task tracker",
+  "license": "ISC",
+  "author": "tyrone sekyere",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
